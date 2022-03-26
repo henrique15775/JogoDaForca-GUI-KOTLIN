@@ -1,0 +1,54 @@
+package com.example.myapplication
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import model.JogodaForca
+import kotlin.random.Random
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var palavra: TextView
+    private lateinit var dica: TextView
+
+
+
+    private lateinit var bancoPalavras: List<String>
+    private lateinit var bancoDicas: List<String>
+    private lateinit var advising: EditText
+    private lateinit var boat : Button
+
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        this.bancoPalavras = arrayListOf<String>("Abelha","Urso","Professor")
+        this.bancoDicas = arrayListOf<String>("Inseto","Animal Mamifero", "Profissão")
+
+        val randomIndex = Random.nextInt(bancoPalavras.size)
+
+        val randomPalavra = bancoPalavras[randomIndex]
+        val randomDica = bancoDicas[randomIndex]
+        var new_JogoDaForca = JogodaForca(randomPalavra,randomDica)
+
+        //campo1 = findViewById(R.id.nome)
+        this.palavra = findViewById(R.id.palavra)
+        this.dica = findViewById(R.id.dica)
+        this.advising = findViewById(R.id.advinha)
+        this.boat = findViewById(R.id.botao)
+        this.palavra.text = new_JogoDaForca.letrasDescobertas()
+        this.dica.text = "Dica: " + new_JogoDaForca.dica
+       // new_JogoDaForca.alterarLabel(this.palavra)
+
+        this.boat.setOnClickListener{
+            if(!new_JogoDaForca.RodarJogo(this.palavra,this.advising,this.dica)){
+                Thread.sleep(2000)
+                finishAndRemoveTask()
+            }
+        }
+
+    }
+
+}
