@@ -49,11 +49,23 @@
         android:id="@+id/botao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adivinhar"
+        android:text="@string/adivinhar"
         app:layout_constraintBottom_toTopOf="@+id/advinha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dica" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="186dp"
+        android:text="@string/forca"
+        app:layout_constraintBottom_toTopOf="@+id/palavra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

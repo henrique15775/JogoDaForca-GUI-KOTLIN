@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bancoDicas: List<String>
     private lateinit var advising: EditText
     private lateinit var boat : Button
-
+    private lateinit var status: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +42,18 @@ class MainActivity : AppCompatActivity() {
         this.palavra.text = new_JogoDaForca.letrasDescobertas()
         this.dica.text = "Dica: " + new_JogoDaForca.dica
        // new_JogoDaForca.alterarLabel(this.palavra)
-
+        //this.status = findViewById(R.id.status)
         this.boat.setOnClickListener{
-            if(!new_JogoDaForca.RodarJogo(this.palavra,this.advising,this.dica)){
-                Thread.sleep(2000)
-                finishAndRemoveTask()
+            val jogada = new_JogoDaForca.RodarJogo(this.palavra,this.advising)
+            if(jogada == 1){
+
+                    val tela_vitoria = Intent(this, venceu:: class.java)
+                    startActivity(tela_vitoria)
+                }else if(jogada == -1){
+                    val tela_derrota = Intent(this, perdeu:: class.java)
+                    startActivity(tela_derrota)
+                }
             }
         }
 
     }
-
-}

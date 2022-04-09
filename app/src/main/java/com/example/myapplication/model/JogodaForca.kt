@@ -1,6 +1,8 @@
 package model
 import android.view.View
 import android.widget.EditText
+//import android.widget.Button
+//import android.widget.EditText
 import android.widget.TextView
 import java.util.Scanner
 class JogodaForca {
@@ -18,7 +20,7 @@ class JogodaForca {
 
     }
 
-    
+
 
     fun getPalavra(): String{
         return this.palavra
@@ -65,7 +67,8 @@ class JogodaForca {
 
         println(letrasDescobertas())
         print("-> ")
-        
+        //var acertou = false
+        //var adivinhar = readLine()
 
         if (adivinhar != null) {
             for (word in adivinhar) {
@@ -73,24 +76,26 @@ class JogodaForca {
                         word.toString().uppercase()
                     ) && this.lista_descoberto.contains(word.toString().uppercase()) == false
                 ) {
-
+//                    println("Palavra ...")
                     this.lista_descoberto.add(word.toString())
-                    
+                    //println(this.lista_descoberto.toString())
+          //          acertou = true
                 } else {
                     this.qnt_erros = this.qnt_erros -1
                 }
             }
         }
 
+
     }
 
 
-    fun verificaResultado(): String{
+    fun verificaResultado(): Int{
         if (!letrasDescobertas().contains("*")) {
             //println(letrasDescobertas(this.lista_descoberto))
             println("VOCE GANHOUUU XD")
             this.resultado = 1
-            return "Você Ganhou!"
+            return this.resultado
         }
 
         if (qnt_erros <= -6) {
@@ -98,14 +103,14 @@ class JogodaForca {
             println("VOCE PERDEUUUUUU :(")
             this.resultado = -1
             //return -1
-            return "Você perdeu!"
+            return this.resultado
         }
-        return ""
+        return 0
     }
 
 
-   
-    fun RodarJogo(word_to_reveal: TextView, res: EditText, status: TextView): Boolean{
+
+    fun RodarJogo(word_to_reveal: TextView, res: EditText): Int{
 
         try {
 
@@ -115,17 +120,19 @@ class JogodaForca {
                 var adivinhar = res.text.toString()
                 adivinharPalavra(adivinhar)
                 var resultado = verificaResultado()
-                if(resultado != ""){
+                if(resultado == 1){
                     word_to_reveal.text = letrasDescobertas()
-                    status.text = resultado
-                    return false
+                    //status.text = resultado
+                    return resultado
+                }else if(resultado == -1){
+                    return resultado
                 }
                 word_to_reveal.text = letrasDescobertas()
 
         } catch (e: Exception) {
             println(e)
         }
-        return true
+        return 0
     }
 
 
