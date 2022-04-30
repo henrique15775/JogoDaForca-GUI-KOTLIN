@@ -34,19 +34,15 @@ class MainActivity : AppCompatActivity() {
         val randomDica = bancoDicas[randomIndex]
         var new_JogoDaForca = JogodaForca(randomPalavra,randomDica)
 
-        //campo1 = findViewById(R.id.nome)
         this.palavra = findViewById(R.id.palavra)
         this.dica = findViewById(R.id.dica)
         this.advising = findViewById(R.id.advinha)
         this.boat = findViewById(R.id.botao)
         this.palavra.text = new_JogoDaForca.letrasDescobertas()
         this.dica.text = "Dica: " + new_JogoDaForca.dica
-       // new_JogoDaForca.alterarLabel(this.palavra)
-        //this.status = findViewById(R.id.status)
         this.boat.setOnClickListener{
             val jogada = new_JogoDaForca.RodarJogo(this.palavra,this.advising)
             if(jogada == 1){
-
                     val tela_vitoria = Intent(this, venceu:: class.java)
                     startActivity(tela_vitoria)
                 }else if(jogada == -1){

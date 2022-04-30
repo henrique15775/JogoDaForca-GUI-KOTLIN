@@ -39,14 +39,11 @@ class JogodaForca {
 
 
     fun letrasDescobertas(): String {
-
-
         var str_words = this.palavra
         for (word in str_words) {
             var confirm = false
             for (word_revealed in this.lista_descoberto) {
                 if (word.toString().uppercase() == word_revealed.uppercase()) {
-                    //println("ENTROU AQ")
                     confirm = true
                     break
                 }
@@ -67,9 +64,6 @@ class JogodaForca {
 
         println(letrasDescobertas())
         print("-> ")
-        //var acertou = false
-        //var adivinhar = readLine()
-
         if (adivinhar != null) {
             for (word in adivinhar) {
                 if (this.palavra.contains(
@@ -78,8 +72,6 @@ class JogodaForca {
                 ) {
 //                    println("Palavra ...")
                     this.lista_descoberto.add(word.toString())
-                    //println(this.lista_descoberto.toString())
-          //          acertou = true
                 } else {
                     this.qnt_erros = this.qnt_erros -1
                 }
@@ -92,17 +84,14 @@ class JogodaForca {
 
     fun verificaResultado(): Int{
         if (!letrasDescobertas().contains("*")) {
-            //println(letrasDescobertas(this.lista_descoberto))
             println("VOCE GANHOUUU XD")
             this.resultado = 1
             return this.resultado
         }
 
         if (qnt_erros <= -6) {
-            //println(letrasDescobertas(lista_descoberto))
             println("VOCE PERDEUUUUUU :(")
             this.resultado = -1
-            //return -1
             return this.resultado
         }
         return 0
@@ -115,14 +104,11 @@ class JogodaForca {
         try {
 
                 word_to_reveal.text = letrasDescobertas()
-                //println(letrasDescobertas())
-                //print("-> ")
                 var adivinhar = res.text.toString()
                 adivinharPalavra(adivinhar)
                 var resultado = verificaResultado()
                 if(resultado == 1){
                     word_to_reveal.text = letrasDescobertas()
-                    //status.text = resultado
                     return resultado
                 }else if(resultado == -1){
                     return resultado
